@@ -82,6 +82,27 @@ public class Node {
         return this.routes.contains(id);
     }
 
+    // input
+    // int num : total number of points
+    // output
+    // -1 : when the left node is not only one.
+    // node_id : node that not visited yet
+    // time complexity : O(N)
+    public int findLastPoint(int num) {
+        int id = -1;
+        int count = 0;
+        if (this.routes.size() == num - 1) {
+            for (int i = 0; i < num; i++) {
+                count += i;
+            }
+            for (int tmp : this.routes) {
+                count -= tmp;
+            }
+            id = count;
+        }
+        return id;
+    }
+
     public Node copyRoutes(Node node) {
         for (int i = 0; i < this.routes.size(); i++) {
             node.addRoute(this.routes.get(i));

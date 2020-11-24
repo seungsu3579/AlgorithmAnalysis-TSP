@@ -38,7 +38,7 @@ public class Solver {
                     next.addRoute(dst);
 
                     // when child cursor is leaf
-                    if (next.getStage() == map.length - 1) {
+                    if (next.getStage() == map.length - 2) {
                         for (int k = 1; k < map.length; k++) {
                             if (!next.isVisited(k)) {
                                 next.addRoute(k);

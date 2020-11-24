@@ -4,5 +4,8 @@ public class Main {
 
         RoadMap map = new RoadMap("./10.tsp", 10);
 
+        Solver sv = new Solver();
+        sv.branchAndBound(map.getMap());
+
     }
 }
