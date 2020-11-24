@@ -12,6 +12,14 @@ public class Solver {
         this.optRoute = new ArrayList<>();
     }
 
+    public double getMinDistance() {
+        return minDistance;
+    }
+
+    public List<Integer> getOptRoute() {
+        return optRoute;
+    }
+
     public void branchAndBound(double[][] map) {
 
         PriorityQueue<Node> pq = new PriorityQueue<>();
@@ -39,7 +47,8 @@ public class Solver {
 
                     // when cursor is leaf
                     if (next.getStage() == map.length - 1) {
-                        next.addRoute(next.findLastPoint(map.length));
+                        int id = next.findLastPoint(map.length);
+                        next.addRoute(id);
 
                         // return back to start point
                         next.addRoute(0);

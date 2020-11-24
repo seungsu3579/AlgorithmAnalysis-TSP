@@ -109,20 +109,18 @@ public class Node implements Comparable<Node> {
     }
 
     public Node copyRoutes(Node node) {
-        for (int i = 0; i < this.routes.size(); i++) {
-            node.addRoute(this.routes.get(i));
+        for (int i = 0; i < node.routes.size(); i++) {
+            this.addRoute(node.routes.get(i));
         }
         return node;
     }
 
     public double totalDistance(double[][] map) {
         double distance = 0;
-
         for (int i = 0; i < this.routes.size() - 1; i++) {
             double tmp = map[this.routes.get(i)][this.routes.get(i + 1)];
             distance += tmp;
         }
-
         return distance;
     }
 

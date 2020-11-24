@@ -7,5 +7,8 @@ public class Main {
         Solver sv = new Solver();
         sv.branchAndBound(map.getMap());
 
+        System.out.println(sv.getMinDistance());
+        System.out.println(sv.getOptRoute());
+
     }
 }
