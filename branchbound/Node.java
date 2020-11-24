@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class Node {
+public class Node implements Comparable<Node> {
 
     private int stage;
     private double bound;
@@ -34,6 +34,11 @@ public class Node {
             return tmp;
         }
         return parent;
+    }
+
+    @Override
+    public int compareTo(Node other) {
+        return Double.compare(this.bound, other.bound);
     }
 
     public void setParent(Node parent) {

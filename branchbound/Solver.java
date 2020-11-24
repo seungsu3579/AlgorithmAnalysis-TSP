@@ -37,17 +37,23 @@ public class Solver {
                     next.copyRoutes(cursor);
                     next.addRoute(dst);
 
-                    // when child cursor is leaf
-                    if (next.getStage() == map.length - 2) {
-                        for (int k = 1; k < map.length; k++) {
-                            if (!next.isVisited(k)) {
-                                next.addRoute(k);
-                            }
-                        }
+                    // when cursor is leaf
+                    if (next.getStage() == map.length - 1) {
+                        next.addRoute(next.findLastPoint(map.length));
 
                         // return back to start point
                         next.addRoute(0);
 
+                        double d = next.totalDistance(map);
+                        if (d < minDistance) {
+                            minDistance = d;
+                            optRoute = next.getRoutes();
+                        }
+                    } else {
+                        next.setBound(bound(next, map));
+                        if (next.getBound() < minDistance) {
+                            pq.add(next);
+                        }
                     }
 
                 }
