@@ -68,6 +68,8 @@ public class Solver {
 
                 }
             }
+            System.out.printf("search : %35s | opt_r : %35s | opt_l : %.2f \r", cursor.getRoutes(), this.optRoute,
+                    this.minDistance);
         }
 
     }
