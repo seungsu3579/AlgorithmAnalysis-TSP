@@ -24,6 +24,9 @@ public class Solver {
 
         PriorityQueue<Node> pq = new PriorityQueue<>();
 
+        int p_count = 0;
+        int s_count = 0;
+
         // set start point
         Node root = new Node(1);
         root.addRoute(0);
@@ -36,6 +39,7 @@ public class Solver {
 
             // branch and bound
             if (cursor.getBound() < minDistance) {
+                s_count++;
                 for (int dst = 1; dst < map.length; dst++) {
                     if (cursor.isPassed(dst)) {
                         continue;
@@ -67,10 +71,21 @@ public class Solver {
                     }
 
                 }
+            } else {
+                p_count++;
             }
-            System.out.printf("search : %35s | opt_r : %35s | opt_l : %.2f \r", cursor.getRoutes(), this.optRoute,
-                    this.minDistance);
+            System.out.printf("pass : %d  | search : %d \r", p_count, s_count);
+            // if (this.minDistance == Double.MAX_VALUE) {
+            // System.out.printf("search : %35s | bound : %.2f | opt_r : not found | opt_l :
+            // not found \r",
+            // cursor.getRoutes(), cursor.getBound(), this.optRoute);
+            // } else {
+            // System.out.printf("search : %35s | bound : %.2f | opt_r : %35s | opt_l : %.2f
+            // \r", cursor.getRoutes(),
+            // cursor.getBound(), this.optRoute, this.minDistance);
+            // }
         }
+        System.out.println();
 
     }
 

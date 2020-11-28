@@ -2,7 +2,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int node_num = 100;
+        int node_num = 10;
         String filename = String.format("./%d.tsp", node_num);
 
         RoadMap map = new RoadMap(filename, node_num);
