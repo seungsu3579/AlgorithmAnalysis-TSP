@@ -52,13 +52,13 @@ public class RoadMap {
             }
         }
 
-        System.out.printf("+++++ Draw Distance Map +++++\n");
-        for (int i = 0; i < points.length; i++) {
-            for (int j = 0; j < points.length; j++) {
-                System.out.printf("%5.2f ", tmpMap[i][j]);
-            }
-            System.out.printf("\n");
-        }
+        // System.out.printf("+++++ Draw Distance Map +++++\n");
+        // for (int i = 0; i < points.length; i++) {
+        // for (int j = 0; j < points.length; j++) {
+        // System.out.printf("%5.2f ", tmpMap[i][j]);
+        // }
+        // System.out.printf("\n");
+        // }
 
         return tmpMap;
     }

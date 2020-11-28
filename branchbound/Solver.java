@@ -62,6 +62,8 @@ public class Solver {
                         if (d < minDistance) {
                             minDistance = d;
                             optRoute = next.getRoutes();
+                            System.out.printf("search : %35s | bound : %.2f | opt_r : %35s | opt_l : %.2f\n",
+                                    next.getRoutes(), next.getBound(), this.optRoute, this.minDistance);
                         }
                     } else {
                         next.setBound(bound(next, map));
