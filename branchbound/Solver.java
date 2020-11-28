@@ -89,6 +89,43 @@ public class Solver {
 
     }
 
+    public void bruteforce(double[][] map) {
+
+        PriorityQueue<Node> pq = new PriorityQueue<>();
+
+        // set start point
+        Node root = new Node(1);
+        root.addRoute(0);
+        root.setBound(bound(root, map));
+        pq.add(root);
+
+        while (!pq.isEmpty()) {
+
+            Node cursor = pq.poll();
+
+            for (int dst = 1; dst < map.length; dst++) {
+                if (cursor.isPassed(dst))
+                    continue;
+
+                Node next = new Node(cursor.getStage() + 1);
+                next.setParent(cursor);
+                next.copyRoutes(cursor);
+                next.addRoute(dst);
+
+                if (next.getStage() == map.length) {
+                    next.addRoute(0);
+                    double d = next.totalDistance(map);
+                    if (this.minDistance > d) {
+                        this.minDistance = d;
+                        this.optRoute = next.getRoutes();
+                    }
+                } else {
+                    pq.add(next);
+                }
+            }
+        }
+    }
+
     public double bound(Node node, double[][] map) {
 
         double bound = node.getParent().getBound();

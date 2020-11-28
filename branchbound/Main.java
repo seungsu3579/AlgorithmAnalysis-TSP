@@ -7,11 +7,19 @@ public class Main {
 
         RoadMap map = new RoadMap(filename, node_num);
 
-        Solver sv = new Solver();
-        sv.branchAndBound(map.getMap());
+        Solver sv1 = new Solver();
+        Solver sv2 = new Solver();
+        // sv.branchAndBound(map.getMap());
+        sv1.branchAndBound(map.getMap());
+        sv2.bruteforce(map.getMap());
 
-        System.out.println(sv.getMinDistance());
-        System.out.println(sv.getOptRoute());
+        System.out.println("+++++ branch & bound +++++");
+        System.out.println(sv1.getMinDistance());
+        System.out.println(sv1.getOptRoute());
+        System.out.println();
+        System.out.println("+++++ brute force +++++");
+        System.out.println(sv2.getMinDistance());
+        System.out.println(sv2.getOptRoute());
 
     }
 }
