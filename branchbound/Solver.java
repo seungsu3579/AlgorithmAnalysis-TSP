@@ -33,6 +33,7 @@ public class Solver {
         while (!pq.isEmpty()) {
 
             Node cursor = pq.poll();
+            System.out.printf("cursor : %s", cursor);
 
             // branch and bound
             if (cursor.getBound() < minDistance) {

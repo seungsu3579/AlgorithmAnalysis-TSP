@@ -37,6 +37,11 @@ public class Node implements Comparable<Node> {
     }
 
     @Override
+    public String toString() {
+        return String.format("%s", this.routes)
+    }
+
+    @Override
     public int compareTo(Node other) {
         return Double.compare(this.bound, other.bound);
     }
