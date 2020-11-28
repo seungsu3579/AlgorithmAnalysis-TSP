@@ -38,7 +38,7 @@ public class Node implements Comparable<Node> {
 
     @Override
     public String toString() {
-        return String.format("%s", this.routes)
+        return String.format("%s", this.routes);
     }
 
     @Override
@@ -114,8 +114,11 @@ public class Node implements Comparable<Node> {
     }
 
     public Node copyRoutes(Node node) {
-        for (int i = 0; i < node.routes.size(); i++) {
-            this.addRoute(node.routes.get(i));
+        // for (int i = 0; i < node.routes.size(); i++) {
+        // this.addRoute(node.routes.get(i));
+        // }
+        for (int i : node.routes) {
+            this.addRoute(i);
         }
         return node;
     }

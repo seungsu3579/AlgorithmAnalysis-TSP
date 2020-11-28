@@ -2,7 +2,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        RoadMap map = new RoadMap("./10.tsp", 10);
+        int node_num = 100;
+        String filename = String.format("./%d.tsp", node_num);
+
+        RoadMap map = new RoadMap(filename, node_num);
 
         Solver sv = new Solver();
         sv.branchAndBound(map.getMap());

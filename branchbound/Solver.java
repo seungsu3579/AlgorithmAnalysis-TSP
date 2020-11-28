@@ -33,13 +33,13 @@ public class Solver {
         while (!pq.isEmpty()) {
 
             Node cursor = pq.poll();
-            System.out.printf("cursor : %s", cursor);
 
             // branch and bound
             if (cursor.getBound() < minDistance) {
                 for (int dst = 1; dst < map.length; dst++) {
-                    if (cursor.isVisited(dst))
+                    if (cursor.isPassed(dst)) {
                         continue;
+                    }
 
                     Node next = new Node(cursor.getStage() + 1);
                     next.setParent(cursor);
