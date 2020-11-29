@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class Solver {
 
     private double[][] graph;
@@ -74,11 +78,63 @@ public class Solver {
         }
     }
 
-    public List<Integer> find_eulerian_circuit(List<Edge> even_node_mst) {
+    public List<Edge> remove_edge(List<Edge> prepro_mst, int node, int next) {
+
+        for (Edge edge : prepro_mst) {
+            if ((edge.getSrc() == next && edge.getDst() == node) || (edge.getSrc() == node && edge.getDst() == next)) {
+                prepro_mst.remove(edge);
+            }
+        }
+        return prepro_mst;
+    }
+
+    public List<Integer> find_eulerian_circuit(List<Edge> prepro_mst) {
 
         // find neighbors
-        Map<Integer, List<Integer>> tmp_graph = new HashMap<>();
+        Map<Integer, List<Integer>> neighbors = new HashMap<>();
+        for (Edge edge : prepro_mst) {
+            if (!neighbors.containsKey(edge.getSrc())) {
+                List<Integer> tmp = new ArrayList<>();
+                neighbors.put(edge.getSrc(), tmp);
+            }
+            if (!neighbors.containsKey(edge.getDst())) {
+                List<Integer> tmp = new ArrayList<>();
+                neighbors.put(edge.getDst(), tmp);
+            }
 
+            neighbors.get(edge.getSrc()).add(edge.getDst());
+            neighbors.get(edge.getDst()).add(edge.getSrc());
+        }
+
+        // finds the hamilton circuit
+        int start = prepro_mst.get(0).getSrc();
+        List<Integer> eulerian_curcuit = new ArrayList<>();
+
+        while (!prepro_mst.isEmpty()) {
+            int i = 0;
+            int node;
+            for (; i < eulerian_curcuit.size(); i++) {
+                node = eulerian_curcuit.get(i);
+                if (neighbors.get(node).size() > 0) {
+                    break;
+                }
+            }
+
+            while (neighbors.get(node).size() > 0) {
+                next = neighbors.get(node).get(0);
+
+                remove_edge(prepro_mst, node, next);
+
+                neighbors.get(node).remove(next);
+                neighbors.get(next).remove(node);
+
+                i++;
+
+                eulerian_curcuit.add(i, next);
+            }
+        }
+
+        return eulerian_curcuit;
     }
 
 }
