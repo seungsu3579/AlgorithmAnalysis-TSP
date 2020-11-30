@@ -27,13 +27,13 @@ public class MSTSolver {
         List<Integer> odd_node_list = find_odd_nodes(mst);
 
         // add minimum weight edges to make tmp hamilton cycle
-        make_tmp_hamilton_cycle(mst, odd_node_list);
+        make_tmp_eulerian_curcuit(mst, odd_node_list);
 
-        // find eulerian circuit
-        List<Integer> eulerian_circuit = find_eulerian_circuit(mst);
+        // find hamilton cycle
+        List<Integer> hamilton_cycle = find_hamilton_cycle(mst);
 
         // prune
-        List<Integer> circuit = prune_circuit(eulerian_circuit);
+        List<Integer> circuit = prune_circuit(hamilton_cycle);
 
         // make start point 0
         this.route = make_start_point_zero(circuit);
@@ -99,7 +99,7 @@ public class MSTSolver {
         return odd_nodes;
     }
 
-    private void make_tmp_hamilton_cycle(List<Edge> mst, List<Integer> odd_nodes) {
+    private void make_tmp_eulerian_curcuit(List<Edge> mst, List<Integer> odd_nodes) {
         // random shuffle odd_nodes
         Collections.shuffle(odd_nodes);
 
@@ -133,7 +133,7 @@ public class MSTSolver {
         return prepro_mst;
     }
 
-    private List<Integer> find_eulerian_circuit(List<Edge> prepro_mst) {
+    private List<Integer> find_hamilton_cycle(List<Edge> prepro_mst) {
 
         // find neighbors
         Map<Integer, List<Integer>> neighbors = new HashMap<>();
@@ -183,16 +183,16 @@ public class MSTSolver {
         return eulerian_curcuit;
     }
 
-    private List<Integer> prune_circuit(List<Integer> eulerian_circuit) {
+    private List<Integer> prune_circuit(List<Integer> hamilton_cycle) {
 
         List<Integer> circuit = new ArrayList<>();
 
-        int cursor = eulerian_circuit.get(0);
+        int cursor = hamilton_cycle.get(0);
         circuit.add(cursor);
-        boolean[] check_visit = new boolean[eulerian_circuit.size()];
+        boolean[] check_visit = new boolean[hamilton_cycle.size()];
         check_visit[cursor] = true;
 
-        for (int next : eulerian_circuit.subList(1, eulerian_circuit.size())) {
+        for (int next : hamilton_cycle.subList(1, hamilton_cycle.size())) {
             if (!check_visit[next]) {
                 circuit.add(next);
                 check_visit[next] = true;
