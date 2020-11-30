@@ -186,6 +186,7 @@ public class MSTSolver {
         List<Integer> circuit = new ArrayList<>();
 
         int cursor = eulerian_circuit.get(0);
+        circuit.add(cursor);
         boolean[] check_visit = new boolean[eulerian_circuit.size()];
         check_visit[cursor] = true;
 
@@ -198,8 +199,6 @@ public class MSTSolver {
         }
         circuit.add(circuit.get(0));
 
-        circuit = make_start_point_zero(circuit);
-
         return circuit;
     }
 
@@ -208,10 +207,6 @@ public class MSTSolver {
         List<Integer> route = new ArrayList<>();
 
         int start = circuit.indexOf(0);
-
-        System.out.println(circuit);
-        System.out.println(circuit.subList(start, circuit.size()));
-        System.out.println(circuit.subList(1, start));
 
         route.addAll(circuit.subList(start, circuit.size()));
         route.addAll(circuit.subList(1, start));
