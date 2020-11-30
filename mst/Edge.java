@@ -34,11 +34,15 @@ class Edge implements Comparable<Edge> {
     }
 
     public String toString() {
-        return String.format("(%d : %.2f)", dst, weight);
+        return String.format("(%d > %d : %.5f)", src, dst, weight);
     }
 
     @Override
     public int compareTo(Edge other) {
-        return Double.compare(this.weight, other.weight);
+        if (Double.compare(this.weight, other.weight) == 0) {
+            return Integer.compare(this.src, other.src);
+        } else {
+            return Double.compare(this.weight, other.weight);
+        }
     }
 }

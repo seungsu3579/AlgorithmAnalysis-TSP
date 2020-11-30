@@ -1,11 +1,5 @@
 import java.io.File;
 import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.PriorityQueue;
-import java.util.Random;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.List;
 import java.io.BufferedReader;
 
 public class Graph {
@@ -18,9 +12,9 @@ public class Graph {
         this.nodeNum = pointNum;
     }
 
-    public static Point[] readPoints(String filename, int pointNum) {
+    public static Point2[] readPoints(String filename, int pointNum) {
 
-        Point[] points = new Point[pointNum];
+        Point2[] points = new Point2[pointNum];
 
         try {
             File file = new File(filename);
@@ -35,7 +29,7 @@ public class Graph {
                 double xloc = Double.parseDouble(data[1]);
                 double yloc = Double.parseDouble(data[2]);
 
-                Point tmp_node = new Point(id, xloc, yloc);
+                Point2 tmp_node = new Point2(id, xloc, yloc);
 
                 points[id] = tmp_node;
             }
@@ -47,7 +41,7 @@ public class Graph {
         return points;
     }
 
-    public static double[][] drawGraph(Point[] points) {
+    public static double[][] drawGraph(Point2[] points) {
         double[][] tmpMap = new double[points.length][points.length];
 
         for (int i = 0; i < points.length; i++) {
@@ -74,13 +68,13 @@ public class Graph {
 
 }
 
-class Point {
+class Point2 {
 
     private int id;
     private double xloc;
     private double yloc;
 
-    public Point(int id, double xloc, double yloc) {
+    public Point2(int id, double xloc, double yloc) {
         this.id = id;
         this.xloc = xloc;
         this.yloc = yloc;
@@ -106,7 +100,7 @@ class Point {
         this.yloc = yloc;
     }
 
-    public double distance(Point p) {
+    public double distance(Point2 p) {
         return Math.sqrt((Math.pow(this.xloc - p.getXloc(), 2) + Math.pow(this.yloc - p.getYloc(), 2)));
     }
 }

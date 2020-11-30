@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
 public class Node implements Comparable<Node> {
@@ -8,18 +6,15 @@ public class Node implements Comparable<Node> {
     private double bound;
     private Node parent;
     private Stack<Integer> routes;
-    private List<Node> children;
 
     public Node() {
         this.routes = new Stack<Integer>();
-        this.children = new ArrayList<>();
         this.bound = 0;
     }
 
     public Node(int stage) {
         this.stage = stage;
         this.routes = new Stack<Integer>();
-        this.children = new ArrayList<>();
         this.bound = 0;
     }
 

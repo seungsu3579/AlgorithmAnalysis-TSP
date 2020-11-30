@@ -22,7 +22,7 @@ public class UnionFind {
 
         List<Integer> path = new ArrayList<>();
         path.add(obj);
-        root = this.parents.get(obj);
+        int root = this.parents.get(obj);
 
         // find path of objects leading to the root
         while (root != path.get(path.size() - 1)) {
@@ -37,28 +37,29 @@ public class UnionFind {
         return root;
     }
 
-    public void union(int src, int dst){
+    public void union(int src, int dst) {
         List<Integer> roots = new ArrayList<>();
         roots.add(this.get(src));
         roots.add(this.get(dst));
 
         int heaviest = 0;
-        int src_w = this.weights.get(roots.get(0))
-        int dst_w = this.weights.get(roots.get(1))
-        if (src_w > dst_w){
-            heaviest = src;
-        }else if(src_w < dst_w){
-            heaviest = dst;
-        }else{
-            if(src > dst){
-                heaviest = src;
-            }else{
-                heaviest = dst;
+        int src_w = this.weights.get(roots.get(0));
+        int dst_w = this.weights.get(roots.get(1));
+
+        if (src_w > dst_w) {
+            heaviest = roots.get(0);
+        } else if (src_w < dst_w) {
+            heaviest = roots.get(1);
+        } else {
+            if (roots.get(0) > roots.get(1)) {
+                heaviest = roots.get(0);
+            } else {
+                heaviest = roots.get(1);
             }
         }
 
-        for(int r : roots){
-            if (r != heaviest){
+        for (int r : roots) {
+            if (r != heaviest) {
                 int tmp = this.weights.get(heaviest) + this.weights.get(r);
                 this.weights.put(heaviest, tmp);
                 this.parents.put(r, heaviest);
