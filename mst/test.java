@@ -13,12 +13,11 @@ public class test {
 
         // solve by christofides algorithm (1.5)
         sv.christofides();
-
         double distance = sv.getDistance();
         List<Integer> route = sv.getRoute();
 
-        System.out.printf("Distance : %.5f", distance);
-        System.out.printf("Finded route : %s", route);
+        System.out.printf("Distance : %.5f\n", distance);
+        System.out.printf("Finded route : %s\n", route);
 
     }
 }
