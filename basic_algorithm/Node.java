@@ -1,3 +1,5 @@
+package basic_algorithm;
+
 import java.util.Stack;
 
 public class Node implements Comparable<Node> {

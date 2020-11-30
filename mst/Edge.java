@@ -1,3 +1,5 @@
+package mst;
+
 class Edge implements Comparable<Edge> {
     private int src;
     private int dst;
