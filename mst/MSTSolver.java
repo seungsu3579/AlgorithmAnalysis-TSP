@@ -30,10 +30,10 @@ public class MSTSolver {
         make_tmp_eulerian_curcuit(mst, odd_node_list);
 
         // find hamilton cycle
-        List<Integer> hamilton_cycle = find_hamilton_cycle(mst);
+        List<Integer> hamiltonian_cycle = find_hamiltonian_cycle(mst);
 
         // prune
-        List<Integer> circuit = prune_circuit(hamilton_cycle);
+        List<Integer> circuit = prune_circuit(hamiltonian_cycle);
 
         // make start point 0
         this.route = make_start_point_zero(circuit);
@@ -133,7 +133,7 @@ public class MSTSolver {
         return prepro_mst;
     }
 
-    private List<Integer> find_hamilton_cycle(List<Edge> prepro_mst) {
+    private List<Integer> find_hamiltonian_cycle(List<Edge> prepro_mst) {
 
         // find neighbors
         Map<Integer, List<Integer>> neighbors = new HashMap<>();
@@ -183,16 +183,16 @@ public class MSTSolver {
         return eulerian_curcuit;
     }
 
-    private List<Integer> prune_circuit(List<Integer> hamilton_cycle) {
+    private List<Integer> prune_circuit(List<Integer> hamiltonian_cycle) {
 
         List<Integer> circuit = new ArrayList<>();
 
-        int cursor = hamilton_cycle.get(0);
+        int cursor = hamiltonian_cycle.get(0);
         circuit.add(cursor);
-        boolean[] check_visit = new boolean[hamilton_cycle.size()];
+        boolean[] check_visit = new boolean[hamiltonian_cycle.size()];
         check_visit[cursor] = true;
 
-        for (int next : hamilton_cycle.subList(1, hamilton_cycle.size())) {
+        for (int next : hamiltonian_cycle.subList(1, hamiltonian_cycle.size())) {
             if (!check_visit[next]) {
                 circuit.add(next);
                 check_visit[next] = true;

@@ -13,13 +13,13 @@ public class Main {
         // test_branch_and_bound();
 
         // test Christopides algorithm in TSP
-        test_christopides();
+        test_christofides();
 
     }
 
     public static void test_bruteforce() {
 
-        int node_num = 10;
+        int node_num = 100;
         String filename = String.format("./%d.tsp", node_num);
 
         RoadMap map = new RoadMap(filename, node_num);
@@ -35,7 +35,7 @@ public class Main {
 
     public static void test_branch_and_bound() {
 
-        int node_num = 10;
+        int node_num = 100;
         String filename = String.format("./%d.tsp", node_num);
 
         RoadMap map = new RoadMap(filename, node_num);
@@ -50,9 +50,9 @@ public class Main {
         System.out.println();
     }
 
-    public static void test_christopides() {
+    public static void test_christofides() {
 
-        int node_num = 100;
+        int node_num = 2000;
         String filename = String.format("./%d.tsp", node_num);
 
         Graph graph = new Graph(filename, node_num);
@@ -64,8 +64,9 @@ public class Main {
         double distance = sv.getDistance();
         List<Integer> route = sv.getRoute();
 
-        System.out.printf("Distance : %.5f\n", distance);
-        System.out.printf("Finded route : %s\n", route);
+        System.out.println("+++++ Christofides +++++");
+        System.out.printf("%.5f\n", distance);
+        System.out.printf("%s\n", route);
 
     }
 }
